@@ -14,4 +14,4 @@ User-Friendly Interface: A clean and visually appealing design with real-time up
 HTML: To structure the game layout.
 CSS: For styling the interface and making it visually appealing.
 JavaScript: To handle the game logic, user interactions, and real-time score updates.
-This project was a great way to practice my web development skills and apply logic in a fun setting. Check out the code on GitHub 🔗 and try it out for yourself!
+This project was a great way to practice my web development skills and apply logic in a fun setting. Check out the code on GitHub 🔗 (https://anikesh-tech.github.io/Hand-Cricket-Game/)and try it out for yourself!
