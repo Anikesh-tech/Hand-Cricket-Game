@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Cricket Game</title>
+    
+
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    #heading{
+        
+       position: absolute;
+       top: 10%;
+        color: red;
+        font-size:50px;
+         margin-left: 300px;
+    }
+    #toss{
+     height: 100vh;
+     width: 100vw;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     box-sizing: border-box;
+     flex-direction: column;
+    }
+    #toss button{
+        background-color:red;
+        height: 40px;
+        width: 300px;
+        color: white;
+        border: none;
+        margin-left: 20px;
+        }
+</style>
+</head>
+<body bgcolor="black" id="main">
+  <center>  <h1 id="heading" >Hand Cricket Game</h1></center>
+    
+    <div id="toss">
+        <h1 style="color:red;text-align:center">Choose Now</h1>
+        <br>
+        <div>
+        <button onclick="toss(0)">Batting</button>
+        <button onclick="toss(1)">Bowling</button>
+    </div>
+    </div>
+    <script>
+        choice=0
+        function toss(a){
+            cs=0;
+            us=0;
+                choice=a
+          document.getElementById("main").innerHTML=`      <br><br>  <center>
+            <h1 style="color: red;text-align: center;">Hand Cricket Game</h3><br>
+            <br>
+                <br>
+            <div style="display: flex; justify-content: space-around;">
+
+
+                <div id="user">
+                    <h1 style="color: white;text-align: center;">User Score <span id="us">0</span></h3>
+                    <img id="ui" src="start.gif" alt="" width="400" height="280" >
+                </div>
+                
+                <div id="wicket">
+                    <br>
+                    <br>
+                    <center>    <h2 id='status' style="color:white">Your Batting</h1></center><br><br>
+                    <center id='changing'>
+                    
+                        <h2 style="color:white"> Wicket:<span id="wick" style="color:red">1</span> &nbsp;&nbsp;&nbsp;
+                             Over:<span id="ball" style="color:red">2</span></h2><br>
+                        <h2 style="color:white"> Remaining ball:<span id="remaining" style="color:red">12</span></h2><br>
+                      <div>
+                        <h2 style="color:red;">Score</h2>
+                        <h1 id="run" style="color:green;font-size:60px">0</h1>
+                        </div>
+                        </center>
+                </div>
+
+                <div id="comp">
+                    <h3 style="color: white;text-align: center;">Comp Score <span id="Cs">0</span></h3>
+                    <img id="ci" src="start.gif" alt="" width="400" height="280" >
+                </div>
+                <button id="restartButton" style="display: none;">Restart Game</button>
+
+
+
+            </div>
+            <div>
+
+                <center>
+                    <h4 style="color: #dc143c;text-align: center;">you choices</h4><br>
+                    <button><img src="one.jpg" alt="" width="80" height="40" style="border-radius:50%"
+                            onclick="play(0)"  id="uss"></button>
+                    <button><img src="two.jfif" alt="" width="80" height="40" style="border-radius:50%"
+                            onclick="play(1)"  id="uss"></button>
+                    <button><img src="three.jpg" alt="" width="80" height="40" style="border-radius:50%"
+                            onclick="play(2)"  id="uss"></button>
+                    <button><img src="four.jpg" alt="" width="80" height="40" style="border-radius:50%"
+                            onclick="play(3)"  id="uss"></button>
+                    <button><img src="five.png" alt="" width="80" height="40" style="border-radius:50%"
+                            onclick="play(4)"  id="uss"></button>
+                    <button><img src="six.jpg" alt="" width="80" height="40" style="border-radius:50%"
+                            onclick="play(5)"  id="uss"></button>
+
+                </center>`
+                change()
+            }
+    
+        
+        a = ["one.jpg", "two.jfif", "three.jpg", "four.jpg", "five.png", "six.jpg"]
+                    cs = 0
+                    us = 0
+                    final=0
+                   
+                    overs=2
+                    remaining=12
+                    overu=0
+                    function play(num) {
+                   cc = Math.floor(Math.random() * 6);
+                   document.getElementById("ui").src = a[num]; 
+                   document.getElementById("ci").src = a[cc];
+                   if(choice==0){
+                   if(num==cc){
+                   document.getElementById("changing").innerHTML=`<br><br><br><br> <h1 style="color:red;font-size:80px">OUT!</h1>
+                   <center><button onclick='change()'>Bowling</button></center>
+                   `
+                   final+=1
+                   choice=1
+                   change(ch)
+                }
+                   else{
+                    remaining--
+                    overu++
+                    document.getElementById("remaining").innerHTML=remaining
+                    us+=num+1;
+                    document.getElementById("run").innerHTML=us
+                    document.getElementById("us").innerHTML=us
+                    console.log(overu)
+                    if(overu==6){
+                        overu=0
+                     
+                        overs--
+                        document.getElementById("ball").innerHTML=overs
+                    }
+                    if(overs==0){
+                    choice=1
+                    final+=1
+                    document.getElementById("changing").innerHTML=`<br><br><br><br><center> <h1 style="color:red;font-size:80px">Final Score is: <br> ${us}</h1>
+                   <button onclick='change()'>Bowling</button></center>
+                   `
+                    }
+                   }
+                }
+                   else{
+                    if(num==cc){
+                   document.getElementById("changing").innerHTML=`<br><br><br><br> <h1 style="color:red;font-size:80px">OUT!</h1>
+                   <button onclick='change()'>Batting Now</button></center>
+                   `
+                   final+=1
+                   choice=0
+                }
+                   else{
+                    remaining--
+                    overu++
+                    document.getElementById("remaining").innerHTML=remaining
+                    cs+=cc+1;
+                    document.getElementById("run").innerHTML=cs
+                    document.getElementById("Cs").innerHTML=cs
+                    console.log(overu)
+                    if(overu==6){
+                        overu=0
+                     
+                        overs--
+                        document.getElementById("ball").innerHTML=overs
+                    }
+                    if(overs==0){
+                    choice=1
+                    final+=1
+                    document.getElementById("changing").innerHTML=`<br><br><br><br><center> <h1 style="color:red;font-size:80px">Final Score is: <br> ${cs}</h1>
+                <button onclick='change()'>Batting Now</button></center>
+                   `
+                    }
+                   }
+                   }    
+}
+change()
+
+function change() {
+    overs=2
+    remaining=12
+    overu=0
+    if(final==2){
+     
+        if(cs>us){
+     document.getElementById("main").innerHTML=`<center><img src="WINNER.gif"  width="400" height="450" style="margin-top:20px;"> <br> <br>
+        <h1 style="color:red">Game Over Computer Win By ${cs-us}</h1></center>`
+        }
+        else if(us>cs){
+      document.getElementById("main").innerHTML=`<center><img src="loosers.gif"  width="400" height="450" alt="" style="margin-top:20px;"><br> <br>
+        <h1 style="color:red">Game Over You Win By ${us-cs}</h1></center>`
+        }
+        else{
+  document.getElementById("main").innerHTML=`<center><img src="draw.gif"  width="400" height="450" alt="" style="margin-top:20px;"><br> <br>
+    <h1 style="color:red">Game Over Tied</h1></center>`
+        }
+
+    }
+   else if(choice ==1){
+    document.getElementById("status").innerHTML="Bowling Time"
+    document.getElementById("changing").innerHTML=`
+    <h2 style="color:white"> Wicket:<span id="wick" style="color:red">1</span> &nbsp;&nbsp;&nbsp;
+                             Over:<span id="ball" style="color:red">2</span></h2><br>
+                        <h2 style="color:white"> Remaining ball:<span id="remaining" style="color:red">12</span></h2><br>
+                      <div>
+                        <h2 style="color:red;">Score</h2>
+                        <h1 id="run" style="color:green;font-size:60px">0</h1>
+                        </div>`
+}
+else{
+      document.getElementById("status").innerHTML="Batting Time"
+      document.getElementById("changing").innerHTML=`
+    <h2 style="color:white"> Wicket:<span id="wick" style="color:red">1</span> &nbsp;&nbsp;&nbsp;
+                             Over:<span id="ball" style="color:red">2</span></h2><br>
+                        <h2 style="color:white"> Remaining ball:<span id="remaining" style="color:red">12</span></h2><br>
+                      <div>
+                        <h2 style="color:red;">Score</h2>
+                        <h1 id="run" style="color:green;font-size:60px">0</h1>
+                        </div>`
+}
+}
+    </script>
+</body>
